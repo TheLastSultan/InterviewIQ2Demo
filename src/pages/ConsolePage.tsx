@@ -20,6 +20,7 @@ import { instructions } from '../utils/conversation_config.js';
 import { WavRenderer } from '../utils/wav_renderer';
 import ReactMarkdown from 'react-markdown';
 import { questionText } from '../utils/question_config.js';
+import Editor from "@monaco-editor/react";
 
 
 import { X, Edit, Zap, ArrowUp, ArrowDown } from 'react-feather';
@@ -371,6 +372,21 @@ export function ConsolePage() {
   }, []);
 
   /**
+   * Monacao code editor, with supported languages
+   */
+  const [editorContent, setEditorContent] = useState<string>("");
+
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>('javascript');
+  const supportedLanguages = [
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'typescript', label: 'TypeScript' },
+    { value: 'python', label: 'Python' },
+    { value: 'java', label: 'Java' },
+    { value: 'cpp', label: 'C++' },
+  ];
+
+  /**
    * Core RealtimeClient and audio capture setup
    * Set all of our instructions, tools, events and more
    */
@@ -532,6 +548,50 @@ export function ConsolePage() {
             <ReactMarkdown>{questionText}</ReactMarkdown>
           </div>
         </div>
+        <div className="content-right">
+          {/* Add the Monaco Editor block */}
+          <div className="content-block editor">
+          <select 
+        value={selectedLanguage}
+        onChange={(e) => setSelectedLanguage(e.target.value)}
+        className="language-dropdown"
+      >
+        {supportedLanguages.map((lang) => (
+          <option key={lang.value} value={lang.value}>
+            {lang.label}
+          </option>
+        ))}
+      </select>
+            <div className="content-block-body full">
+              <Editor
+                height="300px"
+                defaultLanguage="javascript"
+                defaultValue="// Write your code here"
+                value={editorContent}
+                onChange={(value) => setEditorContent(value || '')}
+                theme="vs-dark"
+                options={{
+                  minimap: { enabled: false },
+                  fontSize: 14,
+                  scrollBeyondLastLine: false,
+                  wordWrap: 'on',
+                  wrappingIndent: 'indent',
+                  automaticLayout: true,
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Existing map block */}
+          <div className="content-block map">
+            {/* ... existing map code ... */}
+          </div>
+
+          {/* Existing kv block */}
+          <div className="content-block kv">
+            {/* ... existing memory code ... */}
+          </div>
+        </div>
         <div className="content-logs">
           <div className="content-block conversation">
             <div className="content-block-title">conversation</div>
@@ -626,6 +686,7 @@ export function ConsolePage() {
             />
           </div>
         </div>
+        
       </div>
     </div>
   );
