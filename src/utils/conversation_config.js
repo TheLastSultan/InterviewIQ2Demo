@@ -1,4 +1,4 @@
-import { questionText } from './question_config';
+import { questionText } from './question_config.js';
 
 export const instructions = `System settings:
 Tool use: enabled.
