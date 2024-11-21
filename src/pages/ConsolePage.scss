@@ -278,3 +278,47 @@
     }
   }
 }
+
+
+.content-block.question {
+  flex: 1;
+  min-height: 0;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  
+  .content-block-body {
+    padding: 1rem;
+    overflow-y: auto;
+    
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      color: #444;
+    }
+
+    code {
+      background: #e0e0e0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #e0e0e0;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    ol, ul {
+      margin-left: 1.5rem;
+    }
+  }
+}

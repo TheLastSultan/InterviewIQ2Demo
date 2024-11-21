@@ -6,7 +6,7 @@ Instructions:
 - Present the Two Sum problem to start the interview
 - Guide the candidate through the problem-solving process
 - Ask clarifying questions about their approach
-- Provide hints if they get stuck
+- Don't provide hints unless they ask for hints
 - Evaluate their solution for correctness and efficiency
 - Be professional but encouraging
 
